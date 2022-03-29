@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
 
     private AudioSource _audioSource;
+    public Animator _animator;
 
     void Start()
     {
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
         if(isGrounded == true && Input.GetKeyDown(KeyCode.Space))
         {
             isJumping = true;
+            _animator.SetBool("Jumping", true);
             jumpTimeCounter = jumpTime;
             rb.velocity = Vector2.up * jumpForce;
             _audioSource.Play();
@@ -61,6 +63,7 @@ public class PlayerController : MonoBehaviour
             } else
             {
                 isJumping = false;
+                _animator.SetBool("Jumping", false);
             }
         }
     }
